@@ -1,0 +1,229 @@
+/* ==========================================================================
+   Bernal Editorial — variáveis e estilos padrão
+   Tokens do design system "Classical" com a paleta do site (verde + terracota),
+   reset, tipografia base e componentes reutilizáveis (botões, tags, formulários).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* — Variáveis — */
+:root {
+  /* Cores principais */
+  --color-bg: #f3eee3;
+  --color-surface: #e8dfcc;
+  --color-text: #231f19;
+  --color-accent: #2f5d43;
+  --color-accent-2: #7a4e2d;
+  --color-divider: color-mix(in srgb, #231f19 16%, transparent);
+  --color-on-dark: #f3eee3;
+  --color-on-dark-muted: #e8dfcc;
+
+  /* Rampa neutra */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  /* Rampa do acento (verde) */
+  --color-accent-100: #e6efe8;
+  --color-accent-200: #c9dccf;
+  --color-accent-300: #9fbfaa;
+  --color-accent-700: #244a35;
+  --color-accent-800: #5a3b0a;
+  --color-accent-900: #15281d;
+
+  /* Rampa do acento 2 (terracota) */
+  --color-accent-2-100: #f3e8dc;
+  --color-accent-2-300: #d4b394;
+  --color-accent-2-700: #5e3a20;
+  --color-accent-2-800: #573d14;
+
+  /* Tipografia */
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-heading-weight: 600;
+  --font-body: "Lora", Georgia, serif;
+
+  /* Espaçamento */
+  --space-1: 4.6px;
+  --space-2: 9.2px;
+  --space-3: 13.8px;
+  --space-4: 18.4px;
+  --space-6: 27.6px;
+  --space-8: 36.8px;
+
+  /* Raios */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 7px;
+  --radius-pill: 999px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, #2d2b2b 14%, transparent);
+  --shadow-md: 0 3px 10px color-mix(in srgb, #2d2b2b 16%, transparent);
+  --shadow-lg: 0 12px 32px color-mix(in srgb, #2d2b2b 22%, transparent);
+
+  /* Layout */
+  --container-width: 1200px;
+  --container-padding: 32px;
+}
+
+/* — Reset e base — */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+p { margin: 0; }
+
+a { color: var(--color-accent); text-underline-offset: 3px; }
+a:hover { color: var(--color-accent-700); }
+
+img { display: block; max-width: 100%; }
+figure { margin: 0; }
+
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--color-accent) 30%, transparent); }
+
+/* — Utilitários — */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-inline: var(--container-padding);
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--color-accent-2);
+}
+
+.rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-accent);
+}
+
+.justify { text-align: justify; hyphens: auto; }
+
+.muted { color: var(--color-neutral-800); }
+
+/* Foto "colada" como prancha de livro */
+.plate {
+  filter: sepia(0.22) saturate(0.82) contrast(1.05);
+  border: 6px solid var(--color-surface);
+  outline: 1px solid var(--color-divider);
+}
+
+/* — Botões — */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 12px 20px;
+  border-radius: var(--radius-md);
+  transition: background-color .2s ease, color .2s ease;
+}
+.btn svg { display: block; flex: none; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.btn-primary:active { background: color-mix(in srgb, var(--color-accent) 22%, transparent); }
+
+.btn-secondary { border-color: var(--color-divider); }
+.btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+.btn-secondary:active { background: color-mix(in srgb, var(--color-text) 14%, transparent); }
+
+.btn-ghost { color: var(--color-accent); padding-inline: var(--space-2); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+.btn-ghost:active { background: color-mix(in srgb, var(--color-accent) 18%, transparent); }
+
+.btn-lg { font-size: 17px; padding: 13px 22px; }
+.btn-sm { font-size: 15px; padding: 9px 16px; }
+.btn-block { width: 100%; margin-top: var(--space-2); }
+
+/* Botão redondo só com ícone (redes sociais) */
+.btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--color-accent);
+}
+.btn-icon-lg { width: 47px; height: 47px; }
+
+/* — Tags — */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: .02em;
+  padding: 3px 10px;
+  border-radius: calc(var(--radius-md) * .75);
+}
+.tag-accent { background: var(--color-accent-100); color: var(--color-accent-800); }
+.tag-accent-2 { background: var(--color-accent-2-100); color: var(--color-accent-2-800); }
+
+/* — Formulários — */
+.field > label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--color-text);
+  caret-color: var(--color-accent);
+  background: transparent;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+.input:hover { border-color: color-mix(in srgb, var(--color-text) 45%, transparent); }
+.input:focus-visible { border-color: var(--color-accent); outline-offset: 0; }
+textarea.input { min-height: 90px; resize: vertical; }
+
+/* — Responsivo — */
+@media (max-width: 640px) {
+  :root { --container-padding: 20px; }
+}
